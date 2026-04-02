@@ -1,0 +1,11 @@
+ [
+  {
+    "name_value": "api.target.com"
+  },
+  {
+    "name_value": "*.target.com\ninternal.target.com"
+  },
+  {
+    "name_value": "  "
+  }
+]
