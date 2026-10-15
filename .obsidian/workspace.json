@@ -204,6 +204,11 @@
   },
   "active": "f8ac69cbf4021421",
   "lastOpenFiles": [
+    "The_SocialEngineering.md",
+    "Pasted image 20261015224404.png",
+    "Pasted image 20261015195931.png",
+    "old_repos/SocialEngineering/Phising_Guide/Phising_Guide_5.md",
+    "old_repos/Personal_plans-/compitetions_plans/community_events/The_socilaEng_Lecture.md",
     "Real_old_repo/OnionEye_Maintained/tests/integration/go.sum",
     "Real_old_repo/OnionEye_Maintained/tests/integration/go.mod",
     "Real_old_repo/OnionEye_Maintained/tests/integration/database_test.go",
@@ -214,7 +219,6 @@
     "Real_old_repo/OnionEye_Maintained/tests/e2e/go.mod",
     "Real_old_repo/OnionEye_Maintained/tests/e2e/go.sum",
     "Real_old_repo/OnionEye_Maintained/tests/e2e/dashboard_api_test.go",
-    "Real_old_repo/OnionEye_Maintained/tests/e2e/config_test.go",
     "Real_old_repo/OnionEye_Maintained/sample-target/midnightbazaar/README.md",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/storage-api/vendor/github.com/jackc/pgx/v5/internal/pgio/README.md",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/crawler-worker/vendor/github.com/klauspost/compress/zstd/internal/xxhash/README.md",
@@ -239,16 +243,12 @@
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/ugorji/go/codec/README.md",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/redis/go-redis/v9/RELEASING.md",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/redis/go-redis/v9/README.md",
-    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/redis/go-redis/v9/CONTRIBUTING.md",
-    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/redis/go-redis/v9/CHANGELOG.md",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/go-playground/validator/v10/logo.png",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/dashboard-api/vendor/github.com/go-playground/validator/v10/logo.png",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/correlation-engine/vendor/github.com/go-playground/validator/v10/logo.png",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/content-shield/vendor/github.com/go-playground/validator/v10/logo.png",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/content-filter/vendor/github.com/go-playground/validator/v10/logo.png",
     "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/storage-api/vendor/github.com/go-playground/universal-translator/logo.png",
-    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/storage-api/vendor/github.com/go-playground/locales/logo.png",
-    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/storage-api/vendor/github.com/gabriel-vasile/mimetype/mimetype.gif",
-    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/ingestion-api/vendor/github.com/go-playground/universal-translator/logo.png"
+    "Real_old_repo/OnionEye_Maintained/OnionEye_Code/services/storage-api/vendor/github.com/go-playground/locales/logo.png"
   ]
 }
