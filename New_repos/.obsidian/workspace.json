@@ -1,0 +1,243 @@
+{
+  "main": {
+    "id": "509c74b2104a5886",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8b7c1eb8fffb64f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c302804b1866e4cb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "RT_Social_Vector/Social_Engineering/SD_1_Opsec_Covered.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SD_1_Opsec_Covered"
+            }
+          },
+          {
+            "id": "18bdcd4e2cd6d357",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "RT_Social_Vector/OSINT_Guide/Osint_Guide_1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Osint_Guide_1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a883678a22ae4eb5",
+    "type": "split",
+    "children": [
+      {
+        "id": "d3a54c95b5c2b259",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e59746234850433b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "826892d8badec1a2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6d1c8fc606505857",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "76baffdff0233b5f",
+    "type": "split",
+    "children": [
+      {
+        "id": "358a339570ef76f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b9d0ce848660018e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "RT_Social_Vector/Social_Engineering/SD_1_Opsec_Covered.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "d74129c5848b3b6d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "RT_Social_Vector/Social_Engineering/SD_1_Opsec_Covered.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "cc2b01b04c28f8a0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "78948f7e682f1e5e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "07932cd5280c6f3a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "RT_Social_Vector/Social_Engineering/SD_1_Opsec_Covered.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "c302804b1866e4cb",
+  "lastOpenFiles": [
+    "RT_Social_Vector/OSINT_Guide/Osint_Guide_1.md",
+    "Untitled.base",
+    "Untitled",
+    "Untitled.md",
+    "RT_Social_Vector/Social_Engineering/SD_1_Opsec_Covered.md",
+    "RT_Social_Vector/OSINT_Guide/Opsec_Guide_1.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_9.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_8.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_7.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_6.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_5.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_4.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_3.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_2.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_15.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_14.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_13.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_12.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_11.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_10.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Manual_Testing_1.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Content_Discovery.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Web_Assest_Discovery.md",
+    "RT_Computer_Vector/Web_Exploit_Guide/Hacker_On_The_Plane.md",
+    "RT_Computer_Vector/Web_Exploit_Guide",
+    "RT_Computer_Vector/Web_Development_Guide/frontend/Javacript_Guide.md",
+    "RT_Computer_Vector/Web_Development_Guide/frontend/HTML+CSS_Guide.md",
+    "RT_Computer_Vector/Web_Development_Guide/backend/4_AI_fineTunning_for_Backend.md",
+    "RT_Computer_Vector/Web_Development_Guide/study_Checklist.txt",
+    "RT_Computer_Vector/Web_Development_Guide/frontend",
+    "RT_Computer_Vector/Web_Development_Guide/backend",
+    "RT_Computer_Vector/Web_Development_Guide/GitOps",
+    "RT_Computer_Vector/Web_Development_Guide",
+    "RT_Computer_Vector/LICENSE",
+    "RT_Computer_Vector"
+  ]
+}
