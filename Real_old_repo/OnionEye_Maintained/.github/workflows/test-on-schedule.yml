@@ -1,0 +1,55 @@
+name: Scheduled Tests
+
+on:
+  schedule:
+    # Run every day at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  GO_VERSION: '1.22'
+
+jobs:
+  scheduled-tests:
+    name: Daily Health Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Start Docker Compose Stack
+        working-directory: OnionEye_Code
+        run: |
+          docker compose up -d
+          sleep 60
+
+      - name: Wait for Services
+        run: |
+          timeout 180 bash -c 'until curl -f http://localhost:8080/health 2>/dev/null; do sleep 3; done' || true
+
+      - name: Run All Tests
+        working-directory: tests/e2e
+        run: |
+          go test -v -timeout 20m ./... 2>&1 | tee test-results.log
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scheduled-test-results-${{ github.run_number }}
+          path: tests/e2e/test-results.log
+
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "::warning::Scheduled tests failed! Check test results artifact."
+
+      - name: Cleanup
+        if: always()
+        working-directory: OnionEye_Code
+        run: docker compose down -v

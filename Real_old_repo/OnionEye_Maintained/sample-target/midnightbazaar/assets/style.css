@@ -1,0 +1,48 @@
+/* MidnightBazaar — FICTIONAL DEMO TARGET for OnionEye testing.
+   Plain static CSS: everything stays in this external file so the
+   crawler's extractors see clean, extractable page text. */
+:root {
+  --bg: #0d0f14;
+  --card: #161a22;
+  --border: #2a3040;
+  --ink: #d7dde8;
+  --muted: #7f8aa0;
+  --accent: #35e0a0;
+  --warn: #f2c94c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Courier New", ui-monospace, monospace;
+  line-height: 1.6;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 60px; }
+.banner {
+  background: repeating-linear-gradient(45deg, #2b2115, #2b2115 12px, #33261a 12px, #33261a 24px);
+  border: 1px solid var(--warn);
+  color: var(--warn);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 8px;
+}
+h1 { color: var(--accent); font-size: 26px; }
+h2 { color: #98c3ff; font-size: 18px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 14px 0;
+}
+.vendor { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tag { color: var(--accent); }
+.muted { color: var(--muted); font-size: 13px; }
+.mono { font-family: "Courier New", monospace; color: #ffb86c; word-break: break-all; }
+nav.top { display: flex; gap: 18px; margin: 14px 0 20px; }
+nav.top a { color: #98c3ff; text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 4px; }
+nav.top a:hover { border-color: var(--accent); color: var(--accent); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+.meta { font-size: 13px; color: var(--muted); }

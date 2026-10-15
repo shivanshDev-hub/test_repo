@@ -1,0 +1,241 @@
+name: CI - Main Pipeline
+
+on:
+  push:
+    branches: [ main, develop, 'feature/**', 'fix/**' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+  schedule:
+    # Run tests automatically every day at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  GO_VERSION: '1.22'
+  NODE_VERSION: '18'
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  # =======================
+  # Code Quality & Linting
+  # =======================
+  lint-go:
+    name: Lint Go Services
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - ingestion-api
+          - storage-api
+          - correlation-engine
+          - content-shield
+          - content-filter
+          - crawler-worker
+          - dashboard-api
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: false
+
+      - name: Cache Go Modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: ${{ runner.os }}-go-${{ matrix.service }}-${{ hashFiles(format('OnionEye_Code/services/{0}/go.sum', matrix.service)) }}
+          restore-keys: |
+            ${{ runner.os }}-go-${{ matrix.service }}-
+
+      - name: Install golangci-lint
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.2
+
+      - name: Run golangci-lint
+        working-directory: OnionEye_Code/services/${{ matrix.service }}
+        run: |
+          $(go env GOPATH)/bin/golangci-lint run --timeout=5m --verbose || true
+        continue-on-error: true
+
+      - name: Run go vet
+        working-directory: OnionEye_Code/services/${{ matrix.service }}
+        run: go vet ./...
+
+      - name: Check go fmt
+        working-directory: OnionEye_Code/services/${{ matrix.service }}
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Go code is not formatted:"
+            gofmt -d .
+            exit 1
+          fi
+
+  lint-frontend:
+    name: Lint Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: OnionEye_Code/frontend/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: OnionEye_Code/frontend
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: OnionEye_Code/frontend
+        run: npm run lint || true
+        continue-on-error: true
+
+  # =======================
+  # Unit Tests
+  # =======================
+  test-go-services:
+    name: Unit Test Go Services
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - ingestion-api
+          - storage-api
+          - correlation-engine
+          - content-shield
+          - crawler-worker
+          - dashboard-api
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Cache Go Modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: ${{ runner.os }}-go-test-${{ matrix.service }}-${{ hashFiles(format('OnionEye_Code/services/{0}/go.sum', matrix.service)) }}
+
+      - name: Download Dependencies
+        working-directory: OnionEye_Code/services/${{ matrix.service }}
+        run: go mod download
+
+      - name: Run Unit Tests
+        working-directory: OnionEye_Code/services/${{ matrix.service }}
+        run: |
+          go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.service }}
+          path: OnionEye_Code/services/${{ matrix.service }}/coverage.out
+          retention-days: 7
+
+  # =======================
+  # Integration Tests
+  # =======================
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [test-go-services]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: onioneye
+          POSTGRES_PASSWORD: testpass123
+          POSTGRES_DB: onioneye_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Run Integration Tests
+        working-directory: tests/integration
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: onioneye
+          POSTGRES_PASSWORD: testpass123
+          POSTGRES_DB: onioneye_test
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
+        run: |
+          go test -v -timeout 10m ./...
+
+  # =======================
+  # E2E Tests
+  # =======================
+  e2e-tests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    needs: [integration-tests]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Start Docker Compose Stack
+        working-directory: OnionEye_Code
+        run: |
+          docker compose up -d
+          sleep 45
+
+      - name: Wait for Services
+        run: |
+          timeout 120 bash -c 'until curl -f http://localhost:8080/health 2>/dev/null; do sleep 2; done' || true
+
+      - name: Run E2E Tests
+        working-directory: tests/e2e
+        env:
+          ONIONEYE_BASE_URL: http://localhost
+          INGESTION_API_URL: http://localhost:8080
+          DASHBOARD_API_URL: http://localhost:3000
+        run: |
+          go test -v -timeout 15m ./...
+
+      - name: Cleanup
+        if: always()
+        working-directory: OnionEye_Code
+        run: docker compose down -v

@@ -1,0 +1,37 @@
+# CODEOWNERS
+# See TEAM_STRUCTURE.md for current team member assignments
+# This file maps code areas to responsible teams
+
+# Default owners for everything in the repo
+* @AI-Team @Backend-Frontend-Team @Live-Testing-Debugging-Team
+
+# AI/ML Components
+/OnionEye_Code/services/correlation-engine/ @AI-Team
+/OnionEye_Code/services/content-filter/ @AI-Team
+/OnionEye_Code/services/content-shield/ @AI-Team
+/Architecture/AI_Models/ @AI-Team
+
+# Backend Services
+/OnionEye_Code/services/ingestion-api/ @Backend-Frontend-Team
+/OnionEye_Code/services/storage-api/ @Backend-Frontend-Team
+/OnionEye_Code/services/dashboard-api/ @Backend-Frontend-Team
+/OnionEye_Code/services/crawler-worker/ @Backend-Frontend-Team
+
+# Frontend
+/OnionEye_Code/frontend/ @Backend-Frontend-Team
+
+# Database & Infrastructure
+/OnionEye_Code/db/ @Backend-Frontend-Team
+/OnionEye_Code/docker-compose.yml @Backend-Frontend-Team
+
+# Testing & CI/CD
+/tests/ @Live-Testing-Debugging-Team
+/.github/workflows/ @Live-Testing-Debugging-Team
+*_test.go @Live-Testing-Debugging-Team
+
+# Documentation (all teams can review)
+*.md @AI-Team @Backend-Frontend-Team @Live-Testing-Debugging-Team
+/Architecture/ @AI-Team @Backend-Frontend-Team
+
+# Configuration Files
+/OnionEye_Code/config/ @Backend-Frontend-Team @Live-Testing-Debugging-Team

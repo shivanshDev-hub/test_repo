@@ -1,0 +1,34 @@
+# OnionEye Tor configuration
+# TEMPLATE — placeholders are replaced by entrypoint.sh at every container
+# start, so secrets/circuit lifetimes rotate on every boot:
+#   __TOR_CONTROL_HASH__           → HashedControlPassword for $TOR_CONTROL_PASSWORD
+#   __MAX_CIRCUIT_DIRTINESS__      → randomized 300–900s (anti-profiling)
+
+SocksPort 0.0.0.0:9050
+# Control port bind is 0.0.0.0 so the crawler-worker (separate container) can
+# issue SIGNAL NEWNYM circuit rotation. Non-local control connections require
+# password auth, which Tor enforces automatically.
+ControlPort 0.0.0.0:9051
+HashedControlPassword __TOR_CONTROL_HASH__
+CookieAuthentication 0
+RunAsDaemon 0
+DataDirectory /var/lib/tor
+Log notice stdout
+
+# ── Egress / fingerprint hardening ─────────────────────────────────────────────
+# Only Docker bridge peers may use SOCKS (drops any direct socket access from
+# other networks / the host LAN).
+SOCKSPolicy accept 172.16.0.0/12
+SOCKSPolicy reject *
+
+# This is a pure client: no relay, no hidden service, no DNS proxy.
+ClientOnly 1
+ExitRelay 0
+DNSPort 0
+
+# Randomized per boot in entrypoint (300–900s).
+MaxCircuitDirtiness __MAX_CIRCUIT_DIRTINESS__
+
+# Optional: shrinks padding circuits. Commented because it is already default.
+# CircuitPadding 0
+

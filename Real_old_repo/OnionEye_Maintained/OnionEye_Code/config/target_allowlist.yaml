@@ -1,0 +1,24 @@
+# OnionEye — Target type allowlist
+# Used by ingestion-api Phase 4 (authorization check).
+
+allowed_target_types:
+  - vendor_handle
+  - forum_persona
+  - mixer_service
+  - stealer_broker
+  - data_broker
+  - access_broker
+  - infra_broker
+  - maas_vendor
+  - contact_identifier
+  - pgp_identifier
+  - wallet_cluster
+  - escrow_broker
+  - market_entity
+  - cashout_service
+  - forgery_vendor
+  # UI / analyst aliases used by the frontend dispatch form
+  - onion_address
+  - pgp_key
+  - btc_wallet
+  - url                 # UI alias: clearweb URL from the dossier "DISPATCH SCAN" button

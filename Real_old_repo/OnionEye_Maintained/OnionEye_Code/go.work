@@ -1,0 +1,12 @@
+go 1.25.0
+
+use (
+	./services/content-filter
+	./services/content-shield
+	./services/correlation-engine
+	./services/crawler-worker
+	./services/dashboard-api
+	./services/ingestion-api
+	./services/render-sandbox
+	./services/storage-api
+)

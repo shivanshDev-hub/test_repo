@@ -1,0 +1,8 @@
+# OnionEye — Static target definitions
+# Populated by operators; read by ingestion-api at startup.
+
+targets: []
+  # - host: "mock-market-1.onion"
+  #   type: "marketplace"
+  #   allowed_terms: ["vendor_handle", "pgp_key", "btc_wallet"]
+  #   max_depth: 3

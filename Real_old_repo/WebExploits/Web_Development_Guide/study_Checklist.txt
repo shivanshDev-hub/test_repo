@@ -1,0 +1,8 @@
+// this here is meant to me detelted these is a rough note for the thing i gotta work on 
+
+0 how to use neovim (detailed)
+1. git and github 
+2. docker and kubernetes 
+3. frontend basics 
+4. database (general conecepts, postgres , redis , mangoDB)
+

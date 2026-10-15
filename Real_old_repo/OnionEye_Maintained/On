@@ -1,0 +1,46 @@
+package main
+
+import (
+	"context"
+	"log"
+	"os"
+	"time"
+
+	"github.com/gin-gonic/gin"
+
+	"github.com/onioneye/storage-api/internal/db"
+	"github.com/onioneye/storage-api/internal/handler"
+)
+
+func main() {
+	port := os.Getenv("STORAGE_API_PORT")
+	if port == "" {
+		port = "8081"
+	}
+
+	// storage-api is the ONLY service that holds DB credentials (zero-trust).
+	cfg := db.Load()
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	pool, err := db.Connect(ctx, cfg)
+	if err != nil {
+		log.Fatalf("db connect: %v", err)
+	}
+	defer pool.Close()
+	log.Printf("connected to postgres %s:%s/%s", cfg.Host, cfg.Port, cfg.DBName)
+
+	r := gin.Default()
+
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok", "service": "storage-api"})
+	})
+
+	store := handler.NewStore(pool)
+	store.Register(r)
+
+	log.Printf("storage-api listening on :%s", port)
+	if err := r.Run(":" + port); err != nil {
+		log.Fatal(err)
+	}
+}
